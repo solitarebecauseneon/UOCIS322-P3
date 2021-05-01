@@ -113,9 +113,9 @@ def check():
 
     # Choose page:  Solved enough, or keep going?
     if len(matches) >= flask.session["target_count"]:
-       return flask.redirect(flask.url_for("success"))
+        return flask.redirect(flask.url_for("success"))
     else:
-       return flask.redirect(flask.url_for("keep_going"))
+        return flask.redirect(flask.url_for("keep_going"))
 
 
 ###############
