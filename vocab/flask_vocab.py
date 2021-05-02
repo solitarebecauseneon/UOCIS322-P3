@@ -94,7 +94,7 @@ def check():
     matched = WORDS.has(text)                     # Does it match?
     valid_len = len(text) <= len(jumble)          # Length
     rslt = {"matched": matched, "in_jumble": in_jumble, "valid_len": valid_len}
-    if in_jumble and matched and not (text in matches):
+    if in_jumble and matched:
         matches.append(text)
         flask.session["matches"] = matches
     # Respond appropriately
@@ -123,7 +123,7 @@ def check():
 ###############
 
 @app.route("/_upmatch")
-def upMatch():
+def upmatch():
     """
     updates session.match
     """
