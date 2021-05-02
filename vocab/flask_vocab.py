@@ -78,26 +78,23 @@ def success():
 @app.route("/_check")
 def check():
     """
-    User has submitted the form with a word ('attempt')
-    that should be formed from the jumble and on the
-    vocabulary list.  We respond depending on whether
-    the word is on the vocab list (therefore correctly spelled),
-    made only from the jumble letters, and not a word they
-    already found.
+    keyup event has occurred in the ('attempt')
+    entry form. Checks variables and returns them
+    to vocab.html
     """
     app.logger.debug("Entering check")
 
     # The data we need, from form and from cookie
     text = request.args.get("text", type=str)
     jumble = flask.session["jumble"]
-    matches = flask.session.get("matches", [])  # Default to empty list
+    matches = flask.session.get("matches")  # Default to empty list
 
     # Variables passed to vocab.html
     in_jumble = LetterBag(jumble).contains(text)  # In the jumble?
     matched = WORDS.has(text)                     # Does it match?
     valid_len = len(text) <= len(jumble)          # Length
     rslt = {"matched": matched, "in_jumble": in_jumble, "valid_len": valid_len}
-    if (in_jumble and matched) and not (text in matches):
+    if in_jumble and matched and not (text in matches):
         matches.append(text)
         flask.session["matches"] = matches
     # Respond appropriately
@@ -125,14 +122,15 @@ def check():
 #   These return JSON, rather than rendering pages.
 ###############
 
-@app.route("/_example")
-def example():
+@app.route("/_upmatch")
+def upMatch():
     """
-    Example ajax request handler
+    updates session.match
     """
-    app.logger.debug("Got a JSON request")
-    rslt = {"key": "value"}
-    return flask.jsonify(result=rslt)
+    text = request.args.get("text", type=str)
+    matches = flask.session.get("matches")
+    matches.append(text)
+    flask.session["matches"] = matches
 
 
 #################
