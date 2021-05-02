@@ -83,10 +83,10 @@
          <br />
          <p id="response">
          </p>
-         {% if session.matches|length is not equalto 0  %}
+         {% if matches|length is not equalto 0  %}
          <h2>You found </h2>
          <p id="results">
-            {% for match in session.matches %}
+            {% for match in matches %}
             {{ match }}
             {% endfor %}
          </p>
@@ -118,13 +118,14 @@
 
             // If it's not a letter, do nothing
             if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
-
+            var matches = [];
             $.getJSON( "/_check", { text: txt },
                         function(data) {
                            rmatch = data.result.matched;
                            rjumble = data.result.in_jumble;
-                           rvalid_len = data.result.valid_len
-                           if ((rmatch && rjumble) && !({{session.matches}}.includes(txt))) {
+                           rvalid_len = data.result.valid_len;
+                           if ((rmatch && rjumble) && !(matches.includes(txt))) {
+                              matches.append(text);
                               $("#response").html("Match!");
                               $("#attempt").val("");
                            }

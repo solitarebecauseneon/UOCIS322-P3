@@ -87,16 +87,14 @@ def check():
     # The data we need, from form and from cookie
     text = request.args.get("text", type=str)
     jumble = flask.session["jumble"]
-    matches = flask.session.get("matches")  # Default to empty list
+    # matches = flask.session.get("matches")  # Default to empty list
 
     # Variables passed to vocab.html
     in_jumble = LetterBag(jumble).contains(text)  # In the jumble?
     matched = WORDS.has(text)                     # Does it match?
     valid_len = len(text) <= len(jumble)          # Length
     rslt = {"matched": matched, "in_jumble": in_jumble, "valid_len": valid_len}
-    if in_jumble and matched:
-        matches.append(text)
-        flask.session["matches"] = matches
+
     # Respond appropriately
     """if matched and in_jumble and not (text in matches):
         # Cool, they found a new word
