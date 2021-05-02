@@ -9,7 +9,12 @@
  * style sheet mainly for minor attributes 
  * like text color, italics, etc. 
  */
-
+#div {
+    display: initial;
+}
+#success {
+    display: none;
+}
 .message { 
     color: red;
 }
