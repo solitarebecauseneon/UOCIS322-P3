@@ -86,7 +86,6 @@
          <h2>You found </h2>
          <p id="results">
          </p>
-         {% endif %}
          {% with messages = get_flashed_messages() %}
          {% if messages %}
          <!-- Mismatch, already found, etc. "flashed" from Python -->
@@ -141,7 +140,7 @@
                               $("#response").html("");
                            }
                            console.log("Matches = {{session.matches}}");
-                           console.log("Target count = {{session.target_count}}");
+                           console.log("Target count = {{session.target_count}}");p
                            if ({{ session.matches }}.length >= {{session.target_count}}) {
                               element = document.querySelectorAll("div");
                               element.style.display = "none";
