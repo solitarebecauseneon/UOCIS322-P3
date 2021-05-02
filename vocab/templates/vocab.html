@@ -114,7 +114,7 @@
             // If it's not a letter, do nothing
             if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
 
-            $.getJSON( "/_check", { text: txt },
+            $.getJSON( "/_check", { text: txt }, {match: matches}
                         function(data) {
                            rmatch = data.result.matched;
                            rjumble = data.result.in_jumble;
@@ -141,13 +141,7 @@
                            }
                            console.log(`Matches: ${matches}`);
                            if (matches.length >= {{session.target_count}}) {
-                              element = document.querySelectorAll("div");
-                              console.log(element);
-                              for(item in element) {
-                              item.display = "none";
-                              }
-                              document.getElementById("success").display = "block";
-                              document.querySelect("title").innerHTML = "Success!";
+
                            }
                         }
                      );
