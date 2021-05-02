@@ -83,14 +83,9 @@
          <br />
          <p id="response">
          </p>
-         {% if matches|length is not equalto 0  %}
          <h2>You found </h2>
          <p id="results">
-            {% for match in matches %}
-            {{ match }}
-            {% endfor %}
          </p>
-         {% endif %}
          {% with messages = get_flashed_messages() %}
          {% if messages %}
          <!-- Mismatch, already found, etc. "flashed" from Python -->
@@ -127,10 +122,12 @@
                            rvalid_len = data.result.valid_len;
                            if ((rmatch && rjumble) && !(matches.includes(txt))) {
                               matches.push(txt);
+                              matchString = matches.join(" ");
+                              $("#results").html(matchString);
                               $("#response").html("Match!");
                               $("#attempt").val("");
                            }
-                           else if ({{session.matches}}.includes(txt)) {
+                           else if (matches.includes(txt)) {
                               ("#response").html("Already found!");
                            }
                            else if (!rvalid_len) {
@@ -143,8 +140,8 @@
                            else {
                               $("#response").html("");
                            }
-                           console.log(`Matches: {{session.matches}}`);
-                           if ({{ session.matches }}.length >= {{session.target_count}}) {
+                           console.log(`Matches: {matches}`);
+                           if (matches.length >= {{session.target_count}}) {
                               element = document.querySelectorAll("div");
                               element.style.display = "none";
                               document.getElementById("success").style.display = "block";
