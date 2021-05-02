@@ -73,11 +73,10 @@
          <br />
          <div class="row">
             <div class="col-xs-6 text-center">
-               <form id="entry" ><!--method="POST" action="/_check" -->
+               <form id="entry">
                   <label for="attempt">Word:</label>
                   <input id="attempt" name="attempt" type="text" width="15"
                      autocomplete="off"  autofocus />
-                  <input type="submit" name="try" />
                </form>
             </div>
          </div>
@@ -100,7 +99,7 @@
          {% endfor %}
          {% endif %}
          {% endwith %}
-         <div id="success">
+         <div class="success">
             <h1>That was awesome!</h1>
             <p>Let's <a href="/index">do it again</a>.</p>
          </div>
