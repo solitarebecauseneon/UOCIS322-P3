@@ -125,11 +125,11 @@
                            rjumble = data.result.in_jumble;
                            rvalid_len = data.result.valid_len
                            if ((rmatch && rjumble) && !({{session.matches}}.include(txt))) {
-                              {{session.match}}.push(txt);
+                              {{session.matches}}.push(txt);
                               $("#response").html("Match!");
                               $("#attempt").val("");
                            }
-                           else if ({{session.match}}.include(txt)) {
+                           else if ({{session.matches}}.include(txt)) {
                               ("#response").html("Already found!");
                            }
                            else if (!rjumble) {
