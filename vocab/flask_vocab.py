@@ -5,6 +5,7 @@ from a scrambled string)
 """
 
 import flask
+from flask import request
 import logging
 
 # Our modules
@@ -87,7 +88,7 @@ def check():
     app.logger.debug("Entering check")
 
     # The data we need, from form and from cookie
-    text = flask.request.form["attempt"]
+    text = request.args.get("text", type=str)
     jumble = flask.session["jumble"]
     # matches = flask.session.get("matches", [])  # Default to empty list # No need
 
