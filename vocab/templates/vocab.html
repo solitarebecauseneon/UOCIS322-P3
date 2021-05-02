@@ -104,6 +104,7 @@
             <p>Let's <a href="/index">do it again</a>.</p>
          </div>
          <script>
+         var matches = [];
          $("#entry").submit( function(event) {
             event.preventDefault();
             }); // Suppress normal form submission
@@ -118,7 +119,7 @@
 
             // If it's not a letter, do nothing
             if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
-            var matches = [];
+
             $.getJSON( "/_check", { text: txt },
                         function(data) {
                            rmatch = data.result.matched;
