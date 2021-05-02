@@ -95,10 +95,11 @@ def check():
     # Variables passed to vocab.html
     in_jumble = LetterBag(jumble).contains(text)  # In the jumble?
     matched = WORDS.has(text)                     # Does it match?
-    valid_len = len(text) <= 20                   # Length
+    valid_len = len(text) <= len(jumble)          # Length
     rslt = {"matched": matched, "in_jumble": in_jumble, "valid_len": valid_len}
     if (in_jumble and matched) and not (text in matches):
-        flask.session["matches"] = matches.append(text)
+        matches.append(text)
+        flask.session["matches"] = matches
     # Respond appropriately
     """if matched and in_jumble and not (text in matches):
         # Cool, they found a new word

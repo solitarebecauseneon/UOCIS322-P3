@@ -131,12 +131,12 @@
                            else if ({{session.matches}}.includes(txt)) {
                               ("#response").html("Already found!");
                            }
-                           else if (!rjumble) {
-                              $("#response").html(`${txt} cannot be made from the letters {{ session.jumble }}.`);
-                           }
                            else if (!rvalid_len) {
                               $("#response").html("Too long!");
                               $("#attempt").val("");
+                           }
+                           else if (!rjumble) {
+                              $("#response").html(`${txt} cannot be made from the letters {{ session.jumble }}.`);
                            }
                            else {
                               $("#response").html("");
