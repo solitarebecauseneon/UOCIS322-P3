@@ -128,7 +128,7 @@
                               $("#attempt").val("");
                            }
                            else if (matches.includes(txt)) {
-                              ("#response").html("Already found!");
+                              $("#response").html("Match already found!");
                            }
                            else if (!rvalid_len) {
                               $("#response").html("Too long!");
@@ -140,7 +140,7 @@
                            else {
                               $("#response").html("");
                            }
-                           console.log(`Matches: {matches}`);
+                           console.log(`Matches: ${matches}`);
                            if (matches.length >= {{session.target_count}}) {
                               element = document.querySelectorAll("div");
                               element.style.display = "none";
