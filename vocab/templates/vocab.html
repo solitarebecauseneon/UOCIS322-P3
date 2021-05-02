@@ -84,8 +84,7 @@
          <p id="response">
          </p>
          <h2>You found </h2>
-         <p id="results">
-         </p>
+         <p id="results">Nothing yet!</p>
          {% with messages = get_flashed_messages() %}
          {% if messages %}
          <!-- Mismatch, already found, etc. "flashed" from Python -->
@@ -143,8 +142,9 @@
                            console.log(`Matches: ${matches}`);
                            if (matches.length >= {{session.target_count}}) {
                               element = document.querySelectorAll("div");
+                              console.log(element);
                               element.style.display = "none";
-                              document.getElementById("success").style.display = "block";
+                              document.getElementById("success").display = "block";
                               document.querySelect("title").innerHTML = "Success!";
                            }
                         }
