@@ -83,9 +83,14 @@
          <br />
          <p id="response">
          </p>
+         {% if session.matches|length is not equalto 0  %}
          <h2>You found </h2>
          <p id="results">
+            {% for match in session.matches %}
+            {{ match }}
+            {% endfor %}
          </p>
+         {% endif %}
          {% with messages = get_flashed_messages() %}
          {% if messages %}
          <!-- Mismatch, already found, etc. "flashed" from Python -->
@@ -120,9 +125,6 @@
                            rjumble = data.result.in_jumble;
                            rvalid_len = data.result.valid_len
                            if ((rmatch && rjumble) && !({{session.matches}}.includes(txt))) {
-                              {{session.matches}}.push(txt);
-                              matchString = {{session.matches}}.join(' ');
-                              $("#results").html("{matchString}");
                               $("#response").html("Match!");
                               $("#attempt").val("");
                            }
@@ -130,7 +132,7 @@
                               ("#response").html("Already found!");
                            }
                            else if (!rjumble) {
-                              $("#response").html("{txt} cannot be made from the letters {{ session.jumble }}.");
+                              $("#response").html(`${txt} cannot be made from the letters {{ session.jumble }}.`);
                            }
                            else if (!rvalid_len) {
                               $("#response").html("Too long!");
@@ -139,8 +141,8 @@
                            else {
                               $("#response").html("");
                            }
-                           console.log("Matches = {{session.matches}}");
-                           console.log("Target count = {{session.target_count}}");p
+                           console.log("{{session.matches}}");
+                           console.log("{{session.target_count}}");
                            if ({{ session.matches }}.length >= {{session.target_count}}) {
                               element = document.querySelectorAll("div");
                               element.style.display = "none";
