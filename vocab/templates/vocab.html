@@ -143,7 +143,9 @@
                            if (matches.length >= {{session.target_count}}) {
                               element = document.querySelectorAll("div");
                               console.log(element);
-                              element.style.display = "none";
+                              for(item in element) {
+                              item.display = "none";
+                              }
                               document.getElementById("success").display = "block";
                               document.querySelect("title").innerHTML = "Success!";
                            }
