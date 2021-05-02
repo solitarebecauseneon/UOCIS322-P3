@@ -98,7 +98,7 @@ def check():
     valid_len = len(text) <= 20                   # Length
     rslt = {"matched": matched, "in_jumble": in_jumble, "valid_len": valid_len}
     if (in_jumble and matched) and not (text in matches):
-        matches.append(text)
+        flask.session["matches"] = matches.append(text)
     # Respond appropriately
     """if matched and in_jumble and not (text in matches):
         # Cool, they found a new word
