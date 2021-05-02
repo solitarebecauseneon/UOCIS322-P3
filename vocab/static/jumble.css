@@ -9,7 +9,7 @@
  * style sheet mainly for minor attributes 
  * like text color, italics, etc. 
  */
-#div {
+div {
     display: initial;
 }
 #success {

@@ -101,7 +101,7 @@
          {% endif %}
          {% endwith %}
          <div id="success">
-            <h1 class="success">That was awesome!</h1>
+            <h1>That was awesome!</h1>
             <p>Let's <a href="/index">do it again</a>.</p>
          </div>
          <script>
@@ -125,7 +125,7 @@
                            rmatch = data.result.matched;
                            rjumble = data.result.in_jumble;
                            rvalid_len = data.result.valid_len
-                           if ((rmatch && rjumble) && !({{session.match}}.include(txt))) {
+                           if ((rmatch && rjumble) && !({{session.matches}}.include(txt))) {
                               {{session.match}}.push(txt);
                               $("#response").html("Match!");
                               $("#attempt").val("");
@@ -134,7 +134,7 @@
                               ("#response").html("Already found!");
                            }
                            else if (!rjumble) {
-                              $("#response").html("${txt} cannot be made from the letters ${{ session.jumble }}.");
+                              $("#response").html("${txt} cannot be made from the letters {{ session.jumble }}.");
                            }
                            else if (!rvalid_len) {
                               $("#response").html("Too long!");
