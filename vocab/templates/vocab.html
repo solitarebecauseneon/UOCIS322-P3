@@ -125,7 +125,7 @@
                            rjumble = data.result.in_jumble;
                            rvalid_len = data.result.valid_len;
                            if ((rmatch && rjumble) && !(matches.includes(txt))) {
-                              matches.append(txt);
+                              matches.push(txt);
                               $("#response").html("Match!");
                               $("#attempt").val("");
                            }
