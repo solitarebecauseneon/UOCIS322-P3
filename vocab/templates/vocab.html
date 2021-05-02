@@ -141,8 +141,7 @@
                            else {
                               $("#response").html("");
                            }
-                           console.log(` `);
-                           console.log("{{session.target_count}}");
+                           console.log(`Matches: {{session.matches}}`);
                            if ({{ session.matches }}.length >= {{session.target_count}}) {
                               element = document.querySelectorAll("div");
                               element.style.display = "none";
