@@ -69,13 +69,10 @@ def success():
     return flask.render_template('success.html')
 
 
-@app.route("/_end_check")
+@app.route("/_end_check", methods=["POST"])
 def success_swap():
-    match = request.args.get("match", type=list)
-    target = flask.session["target_count"]
-    if len(match) >= target:
+    if request.method == 'POST':
         return flask.redirect(flask.url_for("success"))
-    return None
 
 
 #######################
