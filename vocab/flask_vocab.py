@@ -69,9 +69,13 @@ def success():
     return flask.render_template('success.html')
 
 
-@app.route("/_success_swap")
+@app.route("/_end_check")
 def success_swap():
-    return flask.redirect(flask.url_for("success"))
+    match = request.args.get("match", type=list)
+    target = flask.session["target_count"]
+    if len(match) >= target:
+        return flask.redirect(flask.url_for("success"))
+    return None
 
 
 #######################
@@ -91,7 +95,6 @@ def check():
 
     # The data we need, from form and from cookie
     text = request.args.get("text", type=str)
-    match = request.args.get("match")
     jumble = flask.session["jumble"]
 
     # Variables passed to vocab.html
@@ -100,8 +103,6 @@ def check():
     valid_len = len(text) <= len(jumble)          # Length
     rslt = {"matched": matched, "in_jumble": in_jumble, "valid_len": valid_len}
     # return results
-    if len(match) >= flask.session["target_count"]:
-        return flask.redirect(flask.url_for("success"))
     return flask.jsonify(result=rslt)
 
 
