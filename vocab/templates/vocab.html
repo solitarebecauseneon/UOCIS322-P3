@@ -142,7 +142,7 @@
                            console.log(`Matches: ${matches}`);
                            if (matches.length >= {{session.target_count}}) {
                               console.log(`Matches met!`);
-                              $.getJSON("/_end_check");
+                              window.location = "{{ url_for('success') }}";
                            }
                         }
                      );
