@@ -141,11 +141,12 @@
                               $("#response").html(" ");
                            }
                            console.log(`Matches: ${matches}`);
-                           if (matches.length >= {{session.target_count}}) {
-                              $.getJSON("/_success_swap");
-                           }
+
                         }
                      );
+            if (matches.length >= {{session.target_count}}) {
+               $.getJSON("/_success_swap");
+            }
          });
       </script>
       </div>
