@@ -82,6 +82,7 @@
          </div>
          <br />
          <p id="response">
+
          </p>
          <h2>You found </h2>
          <p id="results">Nothing yet!</p>
@@ -137,11 +138,11 @@
                               $("#response").html(`${txt} cannot be made from the letters {{ session.jumble }}.`);
                            }
                            else {
-                              $("#response").html("");
+                              $("#response").html(" ");
                            }
                            console.log(`Matches: ${matches}`);
                            if (matches.length >= {{session.target_count}}) {
-                              fetch('/success');
+                              $.getJSON("/success");
                            }
                         }
                      );
