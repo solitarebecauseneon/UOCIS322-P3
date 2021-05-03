@@ -68,13 +68,6 @@ def keep_going():
 def success():
     return flask.render_template('success.html')
 
-
-@app.route("/_end_check", methods=["POST"])
-def success_swap():
-    if request.method == 'POST':
-        return flask.redirect(flask.url_for("success"))
-
-
 #######################
 # Form handler.
 #   You'll need to change this to a
