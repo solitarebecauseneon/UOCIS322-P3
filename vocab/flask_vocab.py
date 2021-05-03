@@ -91,6 +91,7 @@ def check():
 
     # The data we need, from form and from cookie
     text = request.args.get("text", type=str)
+    match = request.args.get("match")
     jumble = flask.session["jumble"]
 
     # Variables passed to vocab.html
@@ -99,6 +100,8 @@ def check():
     valid_len = len(text) <= len(jumble)          # Length
     rslt = {"matched": matched, "in_jumble": in_jumble, "valid_len": valid_len}
     # return results
+    if len(match) >= flask.session["target_count"]:
+        return flask.redirect(flask.url_for("success"))
     return flask.jsonify(result=rslt)
 
 

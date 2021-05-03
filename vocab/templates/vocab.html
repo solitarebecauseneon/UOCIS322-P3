@@ -115,7 +115,7 @@
             // If it's not a letter, do nothing
             if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
 
-            $.getJSON( "/_check", { text: txt },
+            $.getJSON( "/_check", { text: txt }, {match: matches},
                         function(data) {
                            rmatch = data.result.matched;
                            rjumble = data.result.in_jumble;
