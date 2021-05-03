@@ -69,6 +69,11 @@ def success():
     return flask.render_template('success.html')
 
 
+@app.route("/_success_swap")
+def success_swap():
+    return flask.redirect(flask.url_for("success"))
+
+
 #######################
 # Form handler.
 #   You'll need to change this to a
@@ -93,7 +98,7 @@ def check():
     matched = WORDS.has(text)                     # Does it match?
     valid_len = len(text) <= len(jumble)          # Length
     rslt = {"matched": matched, "in_jumble": in_jumble, "valid_len": valid_len}
-    #return results
+    # return results
     return flask.jsonify(result=rslt)
 
 
