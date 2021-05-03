@@ -86,11 +86,7 @@ def check():
 
     # The data we need, from form and from cookie
     text = request.args.get("text", type=str)
-    match = request.args.get("matches")
     jumble = flask.session["jumble"]
-    #success page!
-    if len(match) >= flask.session["target_count"]:
-        return flask.redirect(flask.url_for("success"))
 
     # Variables passed to vocab.html
     in_jumble = LetterBag(jumble).contains(text)  # In the jumble?
@@ -105,17 +101,6 @@ def check():
 # AJAX request handlers
 #   These return JSON, rather than rendering pages.
 ###############
-
-@app.route("/_upmatch")
-def upmatch():
-    """
-    updates session.match
-    """
-    text = request.args.get("text", type=str)
-    matches = flask.session.get("matches")
-    matches.append(text)
-    flask.session["matches"] = matches
-
 
 #################
 # Functions used within the templates
